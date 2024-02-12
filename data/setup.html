@@ -1,0 +1,139 @@
+<!DOCTYPE html><!-- HTML5 -->
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="author" content="andyshark">
+<meta name="Description" content="esp8266 домовенок">
+<title>Настройка WIFI</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="togglePasswordVisibility('password', 'showPasswordBtn'); togglePasswordVisibility('passwordAp', 'showPasswordBtnAp'); togglePasswordVisibility('passwordsys', 'showPasswordBtnsys'); load();">
+<div class="wrapper">
+  <header class="header">
+    <input class="side-menu" type="checkbox" id="menu-toggle">
+    <label class="hamb" for="menu-toggle"> <span class="hamb-line"></span> </label>
+    <a href="mailto:diand@mail.ru" class="logo"> <span class="logo-text">DИAND</span> <img src="img/logo.png" class="logo-img" alt="logo"> </a>
+    <nav class="nav">
+      <ul class="menu">
+        <li> <a href="index.html"><img src="img/home.png" alt="" class="menu-icon"><span>Главная</span></a> </li>
+        <li> <a href="setup.html"><img src="img/wi-fi.png" alt="" class="menu-icon"><span>Настройка WiFi</span></a> </li>
+        <li> <a href="setrf24net.html"><img src="img/nfrf24.png" alt="" class="menu-icon"><span>Настройка RF24</span></a> </li>
+        <li> <a href="service.html"><img src="img/setup.png" alt="" class="menu-icon"><span>Сервис</span></a> </li>
+        <li> <a href="about.html"><img src="img/kuzma.png" alt="" class="menu-icon"><span>О проекте</span></a> </li>
+      </ul>
+    </nav>
+  </header>
+</div>
+<main class="container">
+  <div class="row" style="text-align:center;margin:50px;">
+    <h1 style="margin:50px;">Настройка WIFI</h1>
+    <div class="blocks-container">
+      <div class="wifi-block">
+        <h2>Подключение к WiFi роутеру</h2>
+        <p>
+          <input id="ssid" value="" class="form-control" pattern="[0-9a-zA-Z.]{1,15}" placeholder="Имя WiFi сети роутера">
+          <input class="form-control" type="password" id="password" value="" pattern=".{0,15}" placeholder="Пароль">
+          <button class="btn" id="showPasswordBtn" onclick="togglePasswordVisibility('password', 'showPasswordBtn')">Показать пароль</button>
+          <br>
+          <input name="setonStaticAp" type="checkbox" id="onStaticAp">
+          <label>Использовать статический IP адрес</label>
+          <br>
+          <input type="text" id="ipAddress" placeholder="Введите IP-адрес" oninput="validateInput(event)">
+          <input type="text" id="subnetMask" placeholder="Введите маску подсети" oninput="validateInput(event)">
+          <input type="text" id="gateway" placeholder="Введите шлюз" oninput="validateInput(event)">
+          <button class="btn" onclick="set_ssid(infomsg);">Применить</button>
+        </p>
+      </div>
+      <div class="timezone-block">
+        <h2>Временная зона GMT</h2>
+        <p>
+          <label for="timezone">Часовой пояс:</label>
+          <select id="timezone">
+            <option value="-12">GMT-12:00</option>
+            <option value="-11">GMT-11:00</option>
+            <option value="-10">GMT-10:00</option>
+            <option value="-9">GMT-09:00</option>
+            <option value="-8">GMT-08:00</option>
+            <option value="-7">GMT-07:00</option>
+            <option value="-6">GMT-06:00</option>
+            <option value="-5">GMT-05:00</option>
+            <option value="-4">GMT-04:00</option>
+            <option value="-3">GMT-03:00</option>
+            <option value="-2">GMT-02:00</option>
+            <option value="-1">GMT-01:00</option>
+            <option value="+0">GMT+00:00</option>
+            <option value="+1">GMT+01:00</option>
+            <option value="+2">GMT+02:00</option>
+            <option value="+3">GMT+03:00</option>
+            <option value="+4">GMT+04:00</option>
+            <option value="+5" selected>GMT+05:00</option>
+            <option value="+6">GMT+06:00</option>
+            <option value="+7">GMT+07:00</option>
+            <option value="+8">GMT+08:00</option>
+            <option value="+9">GMT+09:00</option>
+            <option value="+10">GMT+10:00</option>
+            <option value="+11">GMT+11:00</option>
+            <option value="+12">GMT+12:00</option>
+          </select>
+          <button class="btn" onclick="time_zone(infomsg);">Применить</button>
+          <button class="btn" onclick="set_time_zone(infomsg);">Авто определение GMT</button>
+        <h2>На устройстве сейчас</h2>
+        <input type="text" id="time" onkeydown="edit_time(this);" placeholder="дд.мм.гггг чч:мм:сс" oninput="time(event)">
+        <button class="btn" onclick="set_time(infomsg);">Применить</button>
+        <button class="btn" onclick="load_time(infomsg);">Синхронизировать время по NTP</button>
+        </p>
+      </div>
+      <div class="ap-block">
+        <h2>Точка доступа</h2>
+        <p>
+          <input name="setonRouterAp" type="checkbox" id="onRouterAp">
+          <label>Включить точку доступа</label>
+          <br>
+          <input id="ssidAp" value="" class="form-control" pattern="[0-9a-zA-Z.]{1,15}" placeholder="Имя WiFi точки доступа">
+          <input class="form-control" type="password" id="passwordAp" value="" pattern=".{0,15}" placeholder="Пароль">
+          <button class="btn" id="showPasswordBtnAp" onclick="togglePasswordVisibility('passwordAp', 'showPasswordBtnAp')">Показать пароль</button>
+          <br>
+          <button class="btn" onclick="set_ssid_ap(infomsg);">Применить</button>
+        <div>При выборе режима 'Точка доступа', подключение к домашней сети WIFI не возможно.</div>
+        </p>
+      </div>
+      <div class="sys-block">
+        <h2>Доступ к системе</h2>
+        <p>
+          <input id="wwwusername" value="" class="form-control" pattern="[0-9a-zA-Z.]{1,15}" placeholder="Имя пользователя">
+          <input class="form-control" type="password" id="wwwpassword" value="" pattern=".{0,15}" placeholder="Пароль">
+          <button class="btn" id="showPasswordBtnsys" onclick="togglePasswordVisibility('wwwpassword', 'showPasswordBtnsys')">Показать пароль</button>
+          <br>
+          <button class="btn" onclick="set_sys(infomsg);">Применить</button>
+        </p>
+      </div>
+      <div class="tm-block">
+        <h2>Телеграмм бот</h2>
+        <p>
+          <input id="bottoken" style="width: 330px;" value="" class="form-control" pattern="[0-9a-zA-Z.]{1,15}" placeholder="Токен вашего бота (полученный от Botfather)">
+          <br>
+          <input id="chatID" style="width: 330px;" value="" class="form-control" pattern="[0-9a-zA-Z.]{1,15}" placeholder="ID чата или группы">
+          <br>
+          <button class="btn" onclick="set_tm(infomsg);">Применить</button>
+        </p>
+      </div>      
+    </div>
+    <div class="wr-block">
+      <p>
+        <button class="btn" onclick="store_all(infomsg);">Сохранить все</button>
+        <button class="btn" onclick="restart(infomsg,'Вы действительно хотите перезагрузить устройство?');">Перезагрузить устройство</button>
+      </p>
+    </div>
+    <p>
+      <input type="text" class="err" id="infomsg" value="" readonly hidden>
+    </p>
+  </div>
+  <footer> 
+    <!-- Ваш футер --> 
+  </footer>
+</main>
+<script type="text/javascript" src="js/setup.js"></script> 
+<script type="text/javascript" src="js/validateip.js"></script> 
+<script type="text/javascript" src="js/validatetime.js"></script>
+</body>
+</html>

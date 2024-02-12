@@ -1,0 +1,47 @@
+<!DOCTYPE html><!-- HTML5 -->
+<html lang="ru">
+<!-- тело страницы -->
+<head>
+<!--шапка не отображается на странице, видно только поисковикам-->
+<meta charset="utf-8">
+<!-- кодировка -->
+<meta name="author" content="andyshark">
+<!-- информация для поисковиков -->
+<meta name="Description" content="esp8266 домовенок">
+<title>Главная страница</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!--будет отображаться на странице все что втутри тэга boody--> 
+<!-- Navigation bar -->
+<div class="wrapper">
+  <header class="header">
+    <input class="side-menu" type="checkbox" id="menu-toggle">
+    
+    <!-- Переместите label с классом .hamb перед блоком .logo -->
+    <label class="hamb" for="menu-toggle"> <span class="hamb-line"></span> </label>
+    
+    <!-- Блок .logo теперь следует после иконки гамбургера --> 
+    <a href="mailto:diand@mail.ru" class="logo"> <span class="logo-text">DИAND</span> <img src="img/logo.png" class="logo-img" alt="logo"> </a>
+    <nav class="nav">
+      <ul class="menu">
+        <li> <a href="#"><img src="img/home.png" alt="" class="menu-icon"><span>Главная</span></a> </li>
+        <li> <a href="setup.html"><img src="img/wi-fi.png" alt="" class="menu-icon"><span>Настройка WiFi</span></a> </li>
+        <li> <a href="setrf24net.html"><img src="img/nfrf24.png" alt="" class="menu-icon"><span>Настройка RF24</span></a> </li>
+        <li> <a href="service.html"><img src="img/setup.png" alt="" class="menu-icon"><span>Сервис</span></a> </li>
+        <li> <a href="about.html"><img src="img/kuzma.png" alt="" class="menu-icon"><span>О проекте</span></a> </li>
+      </ul>
+    </nav>
+  </header>
+</div>
+<!-- Main content -->
+<main class="container">
+  <article> </article>
+  <!-- Тут должен быть контент страницы -->
+  <hr>
+  <footer> 
+    <!-- Ваш футер --> 
+  </footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html><!-- HTML5 -->
+<html lang="ru">
+<!-- тело страницы -->
+<head>
+<!--шапка не отображается на странице, видно только поисковикам-->
+<meta charset="utf-8">
+<!-- кодировка -->
+<meta name="author" content="andyshark">
+<!-- информация для поисковиков -->
+<meta name="Description" content="esp8266 домовенок">
+<title>Настройка RF24 сети</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!--будет отображаться на странице все что втутри тэга boody--> 
+<!-- Navigation bar -->
+<div class="wrapper">
+  <header class="header">
+    <input class="side-menu" type="checkbox" id="menu-toggle">
+    
+    <!-- Переместите label с классом .hamb перед блоком .logo -->
+    <label class="hamb" for="menu-toggle"> <span class="hamb-line"></span> </label>
+    
+    <!-- Блок .logo теперь следует после иконки гамбургера --> 
+    <a href="mailto:diand@mail.ru" class="logo"> <span class="logo-text">DИAND</span> <img src="img/logo.png" class="logo-img" alt="logo"> </a>
+    <nav class="nav">
+      <ul class="menu">
+        <li> <a href="index.html"><img src="img/home.png" alt="" class="menu-icon"><span>Главная</span></a> </li>
+        <li> <a href="setup.html"><img src="img/wi-fi.png" alt="" class="menu-icon"><span>Настройка WiFi</span></a> </li>
+        <li> <a href="setrf24net.html"><img src="img/nfrf24.png" alt="" class="menu-icon"><span>Настройка RF24</span></a> </li>
+        <li> <a href="service.html"><img src="img/setup.png" alt="" class="menu-icon"><span>Сервис</span></a> </li>
+        <li> <a href="about.html"><img src="img/kuzma.png" alt="" class="menu-icon"><span>О проекте</span></a> </li>
+      </ul>
+    </nav>
+  </header>
+</div>
+<!-- Main content -->
+<main class="container">
+  <div class="row" style="text-align:center;margin:50px;">
+    <h1 style="margin:50px;">Настройка сети RF24</h1>
+    <hr>
+    <h2>Система контроля протечки 1</h2>
+    <p>
+      <input id="ssid" value="" class="form-control" pattern="[0-9a-zA-Z.]{1,15}" placeholder="Имя WiFi сети роутера">
+      <input class="form-control" type="password" id="password" value="" pattern=".{8,15}" onfocus="this.type='text'"
+         placeholder="Пароль">
+      <input class="btn" type="button" value="Установить" onclick="set_ssid(infomsg);">
+    </p>
+    <h2>Система контроля протечки 2</h2>
+    <p>
+      <input id="ssid" value="" class="form-control" pattern="[0-9a-zA-Z.]{1,15}" placeholder="Имя WiFi сети роутера">
+      <input class="form-control" type="password" id="password" value="" pattern=".{8,15}" onfocus="this.type='text'"
+         placeholder="Пароль">
+      <input class="btn" type="button" value="Установить" onclick="set_ssid(infomsg);">
+    </p>
+    <h2>Система контроля протечки 3</h2>
+    <p>
+      <input id="ssid" value="" class="form-control" pattern="[0-9a-zA-Z.]{1,15}" placeholder="Имя WiFi сети роутера">
+      <input class="form-control" type="password" id="password" value="" pattern=".{8,15}" onfocus="this.type='text'"
+         placeholder="Пароль">
+      <input class="btn" type="button" value="Установить" onclick="set_ssid(infomsg);">
+    </p>
+    <h2>Система контроля протечки 4</h2>
+    <p>
+      <input id="ssid" value="" class="form-control" pattern="[0-9a-zA-Z.]{1,15}" placeholder="Имя WiFi сети роутера">
+      <input class="form-control" type="password" id="password" value="" pattern=".{8,15}" onfocus="this.type='text'"
+         placeholder="Пароль">
+      <input class="btn" type="button" value="Установить" onclick="set_ssid(infomsg);">
+    </p>
+    <hr>
+    <h2>Система контроля температуры</h2>
+    <p>
+      <input id="timezone" value="5" pattern="[0-9]{1,3}" class="form-control" size="5" placeholder="Часовой пояс">
+      <input class="btn" type="button" value="Установить" onclick="time_zone(infomsg);">
+      <input class="btn" type="button" value="Авто определение и сохранение зоны" onclick="set_time_zone(infomsg);">
+    </p>
+    <hr>
+    <h2>Контроль дверей</h2>
+    <p>
+      <input id="timezone" value="5" pattern="[0-9]{1,3}" class="form-control" size="5" placeholder="Часовой пояс">
+      <input class="btn" type="button" value="Установить" onclick="time_zone(infomsg);">
+      <input class="btn" type="button" value="Авто определение и сохранение зоны" onclick="set_time_zone(infomsg);">
+    </p>
+    <hr>
+    <p>
+      <input class="btn" type="button" value="Сохранить все" onclick="store_all(infomsg);">
+      <input class="btn"  type="button" value="Перезагрузить устройство"
+        onclick="restart(infomsg,'Вы действительно хотите перезагрузить устройство?');">
+    </p>
+    <hr>
+  </div>
+  <footer> 
+    <!-- Ваш футер --> 
+  </footer>
+</main>
+<script type="text/javascript" src="js/function.js"></script>
+</body>
+</html>

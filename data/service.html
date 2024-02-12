@@ -1,0 +1,207 @@
+<!DOCTYPE html><!-- HTML5 -->
+<html lang="ru">
+<!-- тело страницы -->
+<head>
+<!--шапка не отображается на странице, видно только поисковикам-->
+<meta charset="utf-8">
+<!-- кодировка -->
+<meta name="author" content="andyshark">
+<!-- информация для поисковиков -->
+<meta name="Description" content="esp8266 домовенок">
+<title>Сервис</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!--будет отображаться на странице все что втутри тэга boody--> 
+<!-- Navigation bar -->
+<div class="wrapper">
+  <header class="header">
+    <input class="side-menu" type="checkbox" id="menu-toggle">
+    
+    <!-- Переместите label с классом .hamb перед блоком .logo -->
+    <label class="hamb" for="menu-toggle"> <span class="hamb-line"></span> </label>
+    
+    <!-- Блок .logo теперь следует после иконки гамбургера --> 
+    <a href="mailto:diand@mail.ru" class="logo"> <span class="logo-text">DИAND</span> <img src="img/logo.png" class="logo-img" alt="logo"> </a>
+    <nav class="nav">
+      <ul class="menu">
+        <li> <a href="index.html"><img src="img/home.png" alt="" class="menu-icon"><span>Главная</span></a> </li>
+        <li> <a href="setup.html"><img src="img/wi-fi.png" alt="" class="menu-icon"><span>Настройка WiFi</span></a> </li>
+        <li> <a href="setrf24net.html"><img src="img/nfrf24.png" alt="" class="menu-icon"><span>Настройка RF24</span></a> </li>
+        <li> <a href="service.html"><img src="img/setup.png" alt="" class="menu-icon"><span>Сервис</span></a> </li>
+        <li> <a href="about.html"><img src="img/kuzma.png" alt="" class="menu-icon"><span>О проекте</span></a> </li>
+      </ul>
+    </nav>
+  </header>
+</div>
+<!-- Main content -->
+<main class="container">
+<div class="accordionn">Настроить модуль управления задвижками</div>
+<div class="panel">
+  <div>
+    <h3>Параметры поиска модуля</h3>
+    <ul>
+      <li>
+        <label>Труба RX1:</label>
+        <input id="rxtoubewm" value="318839157" class="toube" pattern="[0-9.]{1,15}" placeholder="318839156">
+        <label>TX1:</label>
+        <input id="txtoubewm" value="318839156" class="toube" pattern="[0-9.]{1,15}" placeholder="318839157">
+      </li>
+      <li>
+        <label>Адрес:</label>
+        <input id="searchaddrwm" value="255" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="255">
+        <label>Канал:</label>
+        <input id="searcchanalwm" value="100" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="100">
+        <input class="btn" type="button" value="Поиск" onclick="search_watermodule(infomsg);">
+      </li>
+    </ul>
+    <hr>
+   <p>
+    <h3>Установка новых значений</h3>
+    <ul>
+      <li>
+        <label>Труба RX1:</label>
+        <input id="setrxtoubewm1" value="" class="toube" pattern="[0-9.]{1,15}" placeholder="318839157">
+        <label>TX1:</label>
+        <input id="settxtoubewm1" value="" class="toube" pattern="[0-9.]{1,15}" placeholder="318839156">
+      </li>
+      <li>
+        <label>Труба RX2:</label>
+        <input id="setrxtoubewm2" value="" class="toube" pattern="[0-9.]{1,15}" placeholder="318839159">
+        <label>TX2:</label>
+        <input id="settxtoubewm2" value="" class="toube" pattern="[0-9.]{1,15}" placeholder="318839158">
+      </li>
+      <li>
+        <label>Адрес:</label>
+        <input id="setaddrwm" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="255">
+        <label>Канал:</label>
+        <input id="setchanalwm" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="100">
+        <label>Мастер:</label>
+        <input id="setmasterwm" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="4">
+      </li>
+      <li>
+        <label>Время спячки:</label>
+        <input id="settsleepwm" value="" class="toube" pattern="[0-9.]{1,5}" placeholder="60000">
+      </li>
+      <li>
+        <label>Коррекция температуры кристалла:</label>
+        <input id="setcorrtwm" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="10">
+      </li>
+      <li>
+        <label>Порог АЦП 1:</label>
+        <input id="setcorradc1wm" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="10">
+        <label>Порог АЦП 2:</label>
+        <input id="setcorradc2wm" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="10">
+      </li>
+      <li>
+        <label>Конфигурация датчика:</label>
+        <br>
+        <input name="setadcwm" type="checkbox" id="adcwm">
+        <label>Ацп</label>
+        <input name="setdigitalwm" type="checkbox" id="digitalwm">
+        <label>Дискретные входы</label>
+      </li>
+      <li>
+        <label>Адрес первого слейва:</label>
+        <input id="setaslvwm" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="16">
+        <label>Количество слейвов:</label>
+        <input id="setnslvwm" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="16">
+      </li>
+      <li>
+        <label>Общий таймаут для любого датчика:</label>
+        <input id="settimeoutslvwm" value="" class="toube" pattern="[0-9.]{1,5}" placeholder="65000">
+      </li>     
+      <li>
+        <label>Время открывания задвижек:</label>
+        <input id="settimeslvwm" value="" class="toube" pattern="[0-9.]{1,5}" placeholder="10000">
+      </li>
+    </ul>
+    <hr>
+    <input class="btn"  type="button" value="Записать в модуль"
+        onclick="store_watermodule(infomsg,'Вы действительно хотите записать в модуль?');">
+    </p>
+  </div>
+</div>
+
+<div class="accordionn">Настроить датчик протечки</div>
+<div class="panel">
+  <div>
+    <h3>Параметры поиска датчика</h3>
+    <ul>
+      <li>
+        <label>Труба RX:</label>
+        <input id="rxtoubews" value="318839157" class="toube" pattern="[0-9.]{1,15}" placeholder="318839156">
+        <label>TX:</label>
+        <input id="txtoubews" value="318839156" class="toube" pattern="[0-9.]{1,15}" placeholder="318839157">
+      </li>
+      <li>
+        <label>Адрес:</label>
+        <input id="searchaddrws" value="255" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="255">
+        <label>Канал:</label>
+        <input id="searcchanalws" value="100" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="100">
+        <input class="btn" type="button" value="Поиск" onclick="search_watersensor(infomsg);">
+      </li>
+    </ul>
+    <hr>
+   <p>
+    <h3>Установка новых значений</h3>
+    <ul>
+      <li>
+        <label>Труба RX:</label>
+        <input id="setrxtoubews" value="" class="toube" pattern="[0-9.]{1,15}" placeholder="318839157">
+        <label>TX:</label>
+        <input id="settxtoubews" value="" class="toube" pattern="[0-9.]{1,15}" placeholder="318839156">
+      </li>
+      <li>
+        <label>Адрес:</label>
+        <input id="setaddrws" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="255">
+        <label>Канал:</label>
+        <input id="setchanalws" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="100">
+        <label>Мастер:</label>
+        <input id="setmasterws" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="4">
+      </li>
+      <li>
+        <label>Время спячки:</label>
+        <input id="settsleepws" value="" class="toube" pattern="[0-9.]{1,15}" placeholder="60000">
+      </li>
+      <li>
+        <label>Коррекция температуры кристалла:</label>
+        <input id="setcorrtws" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="10">
+      </li>
+      <li>
+        <label>Порог АЦП 1:</label>
+        <input id="setcorradc1ws" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="10">
+        <label>Порог АЦП 2:</label>
+        <input id="setcorradc2ws" value="" class="rfaddr" pattern="[0-9.]{1,3}" placeholder="10">
+      </li>
+      <li>
+        <label>Конфигурация датчика:</label>
+        <br>
+        <input name="setadcws" type="checkbox" id="adcws">
+        <label>Ацп</label>
+        <input name="setdigitalws" type="checkbox" id="digitalws">
+        <label>Дискретные входы</label>
+      </li>
+    </ul>
+    <hr>
+    <input class="btn"  type="button" value="Записать в датчик"
+        onclick="store_watersensor(infomsg,'Вы действительно хотите записать в датчик?');">
+    </p>
+  </div>
+</div>
+
+
+<div class="accordionn">Заголовок 3</div>
+<div class="panel">
+  <div>текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3 текст блока №3</div>
+</div>
+<footer>
+
+  <div class="hidemsg">
+    <input type="text" class="err" id="infomsg" value="" readonly hidden>
+</div>
+</footer> 
+</main>
+<script type="text/javascript" src="js/service.js"></script>
+</body>
+</html>
